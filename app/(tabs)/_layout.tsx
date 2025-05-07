@@ -60,7 +60,7 @@ export default function TabLayout() {
       />
 
       {/* <Tabs.Screen name="items" options={{ href: null }} /> */}
-      <Tabs.Screen name="pokemon" options={{ href: null }} />
+      <Tabs.Screen name="(resource)" options={{ href: null }} />
     </Tabs>
   );
 }

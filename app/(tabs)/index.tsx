@@ -29,6 +29,11 @@ export default function HomeScreen() {
             Pokemon
           </ThemedText>
         </Link>
+        <Link href="./items">
+          <ThemedText style={{ fontSize: 30 }} type="link">
+            Items
+          </ThemedText>
+        </Link>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 2: Explore</ThemedText>

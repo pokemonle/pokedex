@@ -6,8 +6,6 @@ export default function IndexLayout() {
       screenOptions={{
         headerShown: false,
       }}
-    >
-      <Stack.Screen name="index" options={{ title: "Home" }} />
-    </Stack>
+    ></Stack>
   );
 }

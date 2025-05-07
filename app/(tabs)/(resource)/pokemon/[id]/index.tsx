@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
+import { Tabs, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import useSWR from "swr";
@@ -62,6 +62,7 @@ export default function PokemonDetailScreen() {
 
   return (
     <ScrollView style={styles.container}>
+      <Tabs.Screen options={{ title: "1111" }} />
       <View style={styles.card}>
         <ThemedText type="title" style={styles.name}>
           {t(pokemon.identifier)}
