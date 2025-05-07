@@ -1,6 +1,7 @@
 import { ThemedText } from "@/components/ThemedText";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import useSWR from "swr";
 
@@ -22,7 +23,7 @@ interface Pokemon {
 export default function PokemonDetailScreen() {
   // Get the ID from the URL parameters
   const { id } = useLocalSearchParams();
-
+  const { t } = useTranslation("pokemon_species");
   // Fetch the Pokemon data
   const { data, error, isLoading } = useSWR<Pokemon>(
     `https://api-rs.pokemonle.incubator4.com/v1/pokemons/${id}`,
@@ -63,8 +64,7 @@ export default function PokemonDetailScreen() {
     <ScrollView style={styles.container}>
       <View style={styles.card}>
         <ThemedText type="title" style={styles.name}>
-          {pokemon.identifier.charAt(0).toUpperCase() +
-            pokemon.identifier.slice(1)}
+          {t(pokemon.identifier)}
         </ThemedText>
 
         <View style={styles.imageContainer}>
