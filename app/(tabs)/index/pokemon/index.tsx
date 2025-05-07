@@ -47,7 +47,13 @@ export default function HomeScreen() {
               isLoading ? (
                 <ThemedText type="title">Loading...</ThemedText>
               ) : (
-                <Link href={`/pokemon/${item.id}`} style={styles.cardLink}>
+                <Link
+                  href={{
+                    pathname: "../pokemon/[id]",
+                    params: { id: item.id },
+                  }}
+                  style={styles.cardLink}
+                >
                   <ThemedView style={styles.card}>
                     <Image
                       source={`https://image.pokemonle.incubator4.com/pokemon/${item.id}.webp`}
