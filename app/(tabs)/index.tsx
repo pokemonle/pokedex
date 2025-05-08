@@ -1,14 +1,38 @@
 import { Image } from "expo-image";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
+
+type AppRoutes = "/pokemon" | "/abilities" | "/berries" | "/items";
 
 export default function HomeScreen() {
-  const router = useRouter();
+  const resources = [
+    {
+      name: "Pokemon",
+      path: "./pokemon",
+      // icon: require("@/assets/images/pokemon-icon.png"), // 假设你有这个图标
+    },
+    {
+      name: "Abilities",
+      path: "./abilities",
+      // icon: require("@/assets/images/partial-react-logo.png"), // 使用现有图标作为替代
+    },
+    {
+      name: "Berries",
+      path: "./berries",
+      // icon: require("@/assets/images/partial-react-logo.png"), // 使用现有图标作为替代
+    },
+    {
+      name: "Items",
+      path: "./items",
+      // icon: require("@/assets/images/partial-react-logo.png"), // 使用现有图标作为替代
+    },
+  ];
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -20,38 +44,32 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Pokemon Dex</ThemedText>
         <HelloWave />
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="./pokemon">
-          <ThemedText style={{ fontSize: 30 }} type="link">
-            Pokemon
-          </ThemedText>
-        </Link>
-        <Link href="./items">
-          <ThemedText style={{ fontSize: 30 }} type="link">
-            Items
-          </ThemedText>
-        </Link>
+
+      <ThemedText type="subtitle" style={styles.exploreText}>
+        Explore the Pokemon Universe
+      </ThemedText>
+
+      {/* 资源卡片网格 */}
+      <ThemedView style={styles.gridContainer}>
+        {resources.map((resource, index) => (
+          <Link key={index} href={resource.path as AppRoutes} asChild>
+            <TouchableOpacity style={styles.card}>
+              {/* <Image
+                source={resource.icon}
+                style={styles.cardIcon}
+              /> */}
+              <ThemedText style={styles.cardText}>{resource.name}</ThemedText>
+            </TouchableOpacity>
+          </Link>
+        ))}
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+
+      <ThemedView style={styles.footerContainer}>
+        <ThemedText style={styles.footerText}>
+          Data provided by Pokemonle
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -62,11 +80,52 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 8,
+    marginBottom: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  exploreText: {
+    textAlign: "center",
+    marginBottom: 24,
+  },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    marginBottom: 32,
+  },
+  card: {
+    width: "48%",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 12,
+    padding: 16,
+    alignItems: "center",
+    marginBottom: 16,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  cardIcon: {
+    width: 80,
+    height: 80,
+    marginBottom: 12,
+  },
+  cardText: {
+    fontSize: 18,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  footerContainer: {
+    marginTop: 20,
+    paddingVertical: 16,
+    alignItems: "center",
+  },
+  footerText: {
+    fontSize: 14,
+    opacity: 0.7,
   },
   reactLogo: {
     height: 178,

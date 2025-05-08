@@ -78,8 +78,9 @@ export default function Pagination({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
+    alignItems: "center",
+    width: "100%",
   },
 });
